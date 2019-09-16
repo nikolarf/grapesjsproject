@@ -11,7 +11,7 @@
     <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
     <script src="https://unpkg.com/grapesjs"></script>
     <script src="//feather.aviary.com/imaging/v3/editor.js"></script>
-<script src="https://static.filestackapi.com/v3/filestack-0.1.10.js"></script>
+    <script src="https://static.filestackapi.com/v3/filestack-0.1.10.js"></script>
 
     <!-- PLUGINS -->
     <script src="./toastr/toastr.js"></script>
@@ -21,21 +21,21 @@
 
 
     <style>
-    body, html{ height: 100%; margin: 0;}
+        body, html{ height: 100%; margin: 0;}
 
-    .gjs-block-svg {
-        width: 61%;
-    }
+        .gjs-block-svg {
+            width: 61%;
+        }
 
-    .gjs-block-svg-path {
-      fill: white;
-    }
+        .gjs-block-svg-path {
+          fill: white;
+        }
     </style>
   </head>
 
   <body>
-    <div id="gjs">
-
+    <div id="gjs-{{ $id }}">
+        {{ $user->name }}
     </div>
     <script type="text/javascript">
           var prefix = document.getElementsByTagName("div")[0].getAttribute("id");

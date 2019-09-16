@@ -9,13 +9,13 @@ class ContentPageController extends Controller
 {
     public function addContent($contentPage, $prefix, $request)
     {
-        $contentPage->id= $prefix; 
+        $contentPage->id = $prefix; 
         $contentPage->user_id = auth()->id();
-        $contentPage->assets= $request->input('gjs-assets');
-        $contentPage->css= $request->input('gjs-css');
-        $contentPage->styles= $request->input('gjs-styles');
-        $contentPage->html= $request->input('gjs-html');
-        $contentPage->components= $request->input('gjs-components');
+        $contentPage->assets = request('gjs-assets');
+        $contentPage->css = request('gjs-css');  
+        $contentPage->styles = request('gjs-styles');
+        $contentPage->html = request('gjs-html');
+        $contentPage->components = request('gjs-components');
 
         $contentPage->save();
     }
@@ -23,17 +23,20 @@ class ContentPageController extends Controller
     public function store(Request $request)
     {
         //prefix = what is contained in main div (ID) -> what makes it a unique identifier
-        $prefix = $request->route('id');
-
+        // $prefix = $request->route('id');
+        $prefix = request('id');
 
         $entry = ContentPage::where('id', '=', $prefix)->first();
+
         if ($entry === null) {
             //create new entry
-            $contentPage= new ContentPage();
+            $contentPage = new ContentPage();
         } else {
-            $contentPage= $entry;
+            $contentPage = $entry;
         }
+
         Self::addContent($contentPage, $prefix, $request);
+
         return redirect()->back();
     }
 
@@ -41,7 +44,7 @@ class ContentPageController extends Controller
     {
         $prefix = request('id');
 
-        $contentPage = ContentPage::whereId($prefix)->first(); 
+        $contentPage = ContentPage::where('id', '=', $prefix)->first(); dd($contentPage);
 
         if ($contentPage === null) {
             $contentPage = new ContentPage();

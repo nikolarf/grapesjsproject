@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function contentpages()
+    {
+        $this->hasMany(ContentPage::class);
+    } 
+
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
 }

@@ -11,9 +11,16 @@
 |
 */
 
+// Route::get('/{id}', function ($id) {
+
+//     return view('index-simple', compact('id'));
+// });
+
 Route::get('/', function () {
     return view('index-simple');
 });
+
+Route::get('/{user}/{id}', 'TestController@show');
 
 Route::post('/content/store/{id}', 'ContentPageController@store')->name('content.store');
 Route::get('/content/load/{id}', 'ContentPageController@load')->name('content.load');
